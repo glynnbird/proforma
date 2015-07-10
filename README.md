@@ -30,10 +30,8 @@ You can see the list of form submissions by clicking the 'gear' icon on the top 
 
 The data can be uploaded to Cloudant by completing the form on the settings page and providing a Cloudant URL e.g.
 
-![settings](https://github.com/glynnbird/proforma/raw/master/img/proforma_settings.png "settings")
-
-* https://myaccount.cloudant.com/proforma - assuming that this database is writable 
-* https://key:password@myaccount.cloudant.com/proforma - to provide credentials in the URL
+* `https://myaccount.cloudant.com/proforma` - assuming that this database is writable 
+* `https://key:password@myaccount.cloudant.com/proforma` - to provide credentials in the URL
 
 N.B. the target database must be writable, or authentication credentials must be supplied in the URL. CORS must be enabled on your Cloudant account
 to allow this replication to occur.
