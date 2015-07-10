@@ -159,12 +159,28 @@ var home = function() {
 };
 
 var deleteEverything = function() {
-  db.destroy(function(err, data) {
-     db = new PouchDB('proforma');
-     $("#thesubmissionform")[0].reset();
-     $("#theconfigform")[0].reset();
-     home();
-  });
+  var r = confirm("Press ok to delete all your data!");
+  if (r == true) {
+    db.destroy(function(err, data) {
+       db = new PouchDB('proforma');
+       $("#thesubmissionform")[0].reset();
+       $("#theconfigform")[0].reset();
+       home();
+    });
+  }
+};
+
+var upload = function() {
+  var url = $('#url').val();
+  if(url.length>0) {
+    db.replicate.to(url).then(function (result) {
+      alert("Uploaded to Cloudant URL " + url);
+    }).catch(function (err) {
+      alert("Upload failed: " + err)
+    });;
+  } else {
+    alert("You must supply a url");
+  }
 }
 
 $( document ).ready(function() {

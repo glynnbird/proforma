@@ -69,6 +69,11 @@
       </div>
       <div id="submissionsbody" class="panel-body"></div>
       <div class="panel-footer">
+        <div class="form-group">
+          <label for="subtitle">Cloudant URL</label>
+          <input type="text" class="form-control" id="url" placeholder="https://user:pass@user.cloudant.com/mydb">
+        </div>
+        <input type="button" class="btn btn-success" value="UPLOAD" onclick="upload()" />
         <input type="button" class="btn btn-danger" value="DELETE EVERYTHING" onclick="deleteEverything()" />
       </div>
     </div>
