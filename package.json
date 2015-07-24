@@ -1,0 +1,13 @@
+{
+  "name": "proforma",
+  "version": "0.0.2",
+  "description": "Offline-first form collection tool using PouchDB",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "cfenv": "^1.0.0",
+    "express": "4.12.x"
+  },
+  "repository": {}
+}
