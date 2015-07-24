@@ -8,12 +8,14 @@ NETWORK:
 
 CACHE:
 # all of the things below are required to make this thing work offline
-# //code.jquery.com/jquery-1.11.3.min.js
-# //maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css
-# //maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js
-# //cdnjs.cloudflare.com/ajax/libs/pouchdb/3.6.0/pouchdb.min.js
-# //maxcdn.bootstrapcdn.com/bootstrap/3.3.5/fonts/glyphicons-halflings-regular.woff
-# img/form.jpg
-# js/proforma.js
-# css/proforma.css
-# /proforma/
+/assets/css/lib/bootstrap.min.css
+/css/proforma.css
+/img/form.jpg
+/assets/css/custom.css
+/assets/css/lib/bootstrap-responsive.min.css
+/js/proforma.js
+/assets/js/lib/require.js
+//cdnjs.cloudflare.com/ajax/libs/pouchdb/3.6.0/pouchdb.min.js
+/assets/js/main-built.js
+/
+

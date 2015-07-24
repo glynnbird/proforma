@@ -1,16 +1,6 @@
 var db = null;
 
 var showConfig = function(config) {
-  if(config) {
-    $('#configalert').hide();
-    $('#title').val(config.title);
-    $('#subtitle').val(config.subtitle);
-    $('#fields').val(config.fields.join(","));
-    $('#url').val(config.url);
-  } else {
-    $('#configalert').show();
-  }
-
   $('#config').show();
 };
 
@@ -98,9 +88,12 @@ var submitConfig = function() {
 };
 
 var settingsClicked = function() {
-  $('#submissionform').hide(); 
+  console.log("settings clicked");
+  $('#theform').hide(); 
   loadSettingsAndConfig(function(err,obj) {
-    showConfig(obj.config);
+    if(!obj.config) {
+      showConfig(obj.config);
+    };
     showSubmissions(obj.submissions);
   });
 };
@@ -119,32 +112,81 @@ var renderControl = function(name,type,placeholder) {
 
 
 var showForm = function(config) {
-  var html = '<h1>' + config.title + '</h1>\n';
+/*  var html = '<h1>' + config.title + '</h1>\n';
   html += '<h2>' + config.subtitle + '</h2>\n';
   html += '<form id="thesubmissionform" onsubmit="return submitForm();">\n';
   for(var i in config.fields) {
     html += renderControl(config.fields[i],'text','');
   }
   html += '<button type="submit" class="btn btn-default">Submit</button>\n';
-  html += '</form>';
+  html += '</form>';*/
+  var html = config.theform;
+  html = html.replace(/<form/gm,'<form id="theform"');
+  var snippet = '<div class="control-group">\n';
+  snippet += '  <label class="control-label" for="submitbutton"></label>\n';
+  snippet += '  <div class="controls">\n';
+  snippet += ' <input type="button" class="btn btn-danger" value="Submit" onclick="submitClicked()">\n';
+  snippet += ' </div>\n';
+  snippet += '</div>\n';
+  html = html.replace("</fieldset>", snippet + '</fieldset>'); 
   $('#submissionform').html(html);
   $('#submissionform').show(); 
   $('#submissions').hide();
   $('#config').hide();
-  
-  
 };
 
-var submitForm = function() {
-  var data = {};
-  $("#thesubmissionform").serializeArray().map(function(x){data[x.name] = x.value;});
-  data.type="submission";
-  db.post(data, function(err, data) {
-    $("#thesubmissionform")[0].reset();
-    alert("Thank you!");
-  })  
-  return false;
+var formToJSON = function( selector )
+{
+     var form = {};
+     $(selector).find(':input[name]:enabled').each( function() {
+         var self = $(this);
+         console.log(self);
+         var name = self.attr('name');
+         var ctrltype = self.attr('type');
+         console.log(ctrltype);
+         switch(ctrltype) {
+           case "checkbox":
+           case "radio":
+             if(self.is(':checked')) {
+               if (form[name]) {
+                  form[name] = form[name] + ',' + self.val();
+               }
+               else {
+                  form[name] = self.val();
+               }
+             }
+             break;
+           
+           case "text":
+           case "password":
+           case "textarea":
+           case "select":
+           default: 
+             if (form[name]) {
+                form[name] = form[name] + ',' + self.val();
+             }
+             else {
+                form[name] = self.val();
+             }
+             break;
+         }
+         
+
+     });
+     console.log(form);
+     return form;
 }
+var submitClicked = function() {
+  
+  console.log("Submit clicked");
+  var obj = formToJSON('#theform');
+  obj.type="submission";
+  db.post(obj, function(err, data) {
+    $("#theform")[0].reset();
+    alert("Thank you!");
+  });  
+}
+
 
 
 var home = function() {
@@ -163,8 +205,6 @@ var deleteEverything = function() {
   if (r == true) {
     db.destroy(function(err, data) {
        db = new PouchDB('proforma');
-       $("#thesubmissionform")[0].reset();
-       $("#theconfigform")[0].reset();
        home();
     });
   }
@@ -181,17 +221,39 @@ var upload = function() {
   } else {
     alert("You must supply a url");
   }
-}
+};
 
-$( document ).ready(function() {
+var saveClicked = function() {
+  console.log("saveClicked!");
+  var theform = $('#render').val();
+  var config = { };
+  config._id = "config";
+  config.theform = theform
+  loadConfig(function(err, data) {
+    if(!err && data != null) {
+      config._rev = data._rev;
+    }
+    db.put(config, function(err, data) {
+      $('#config').hide();
+      $('#submissions').hide();
+      showForm(config);
+    });
+  });
+};
+
+window.onload = function() {
 
   db = new PouchDB('proforma');
   
   home();
-
+ 
   setTimeout(function() {
     $('#jumbo').hide();
-    
+    $('#formtabs :last').remove();
+    $('#formtabs :last').remove();
+    $('#formtabs :last').remove();
+    $('#formtabs :last').remove();
+        $('#formtabs :last').remove();
   }, 3000);    
   
   window.applicationCache.addEventListener('updateready', function(e) {
@@ -205,4 +267,4 @@ $( document ).ready(function() {
     }
   }, false);
   
-});
+};
