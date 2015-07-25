@@ -12,6 +12,7 @@ var removeByValue = function(arr,value) {
 
 var showSubmissions = function(submissions) {
   $('#submissions').show();
+  $('#deletions').show();
   var html = "";
   if(submissions.length>0) {
     html = '<table class="table table-striped">\n';
@@ -81,6 +82,7 @@ var submitConfig = function() {
     db.put(config, function(err, data) {
       $('#config').hide();
       $('#submissions').hide();
+      $('#deletions').hide();
       showForm(config);
     });
   });
@@ -132,6 +134,7 @@ var showForm = function(config) {
   $('#submissionform').html(html);
   $('#submissionform').show(); 
   $('#submissions').hide();
+  $('#deletions').hide();
   $('#config').hide();
 };
 
@@ -213,10 +216,11 @@ var deleteEverything = function() {
 var upload = function() {
   var url = $('#url').val();
   if(url.length>0) {
-    db.replicate.to(url).then(function (result) {
-      alert("Uploaded to Cloudant URL " + url);
+    db.sync(url).then(function (result) {
+      alert("Synced to Cloudant URL " + url);
+      home();
     }).catch(function (err) {
-      alert("Upload failed: " + err)
+      alert("Sync failed: " + err)
     });;
   } else {
     alert("You must supply a url");
@@ -236,6 +240,7 @@ var saveClicked = function() {
     db.put(config, function(err, data) {
       $('#config').hide();
       $('#submissions').hide();
+      $('#deletions').hide();
       showForm(config);
     });
   });

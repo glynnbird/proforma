@@ -35,5 +35,10 @@ The data can be uploaded to Cloudant by completing the form on the settings page
 N.B. the target database must be writable, or authentication credentials must be supplied in the URL. CORS must be enabled on your Cloudant account
 to allow this replication to occur.
 
+## Using on a mobile device
+
+As the form configuration requires drag and drop, it is best to configure the form on a desktop browser, as drag and drop doesn't
+work so well on iPads. On the desktop device, sync to a Cloudant Database. Then on the iPad you can also sync to this database
+which will take the form configuration automatically. Syncing only happens when you want it to - when you press the sync button.
 
 

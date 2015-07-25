@@ -93,38 +93,32 @@
 
     </div>
     
-    
-      
-    <!--       <form id="theconfigform" onsubmit="return submitConfig();">
-             <div class="form-group">
-               <label for="title">Title</label>
-               <input type="text" class="form-control" id="title" placeholder="title">
-             </div>
-             <div class="form-group">
-               <label for="subtitle">Sub-title</label>
-               <input type="text" class="form-control" id="subtitle" placeholder="sub title">
-             </div>
-             <div class="form-group">
-               <label for="subtitle">Fields</label>
-               <input type="text" class="form-control" id="fields" placeholder="fields e.g. name,age,telephone,email">
-             </div>
-             <button type="submit" class="btn btn-default">Submit</button>
-           </form>
-      -->
+  
     <div id="submissions" class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Submissions</h3>
       </div>
       <div id="submissionsbody" class="panel-body"></div>
       <div class="panel-footer">
+        <h2>Sync to Cloudant</h2>
         <div class="form-group">
           <label for="subtitle">Cloudant URL</label>
           <input type="text" class="form-control" id="url" placeholder="https://user:pass@user.cloudant.com/mydb">
         </div>
-        <input type="button" class="btn btn-success" value="UPLOAD" onclick="upload()" />
+        <input type="button" class="btn btn-success" value="Sync" onclick="upload()" />
+      </div>
+    </div>
+    
+    <div id="deletions" class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Delete all data</h3>
+      </div>
+      <div class="panel-body">
+        <p>Delete the form definition and all form submissions from this device.</p>
         <input type="button" class="btn btn-danger" value="DELETE EVERYTHING" onclick="deleteEverything()" />
       </div>
     </div>
+    
 
     <script src="js/pouchdb.js" type="text/javascript"></script>
     <script data-main="assets/js/main-built.js" src="assets/js/lib/require.js"></script>
