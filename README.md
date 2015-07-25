@@ -5,19 +5,18 @@ to store the data inside the web browser.
 
 ## Demo
 
-Visit (http://glynnbird.github.io/proforma) to see it in action.
+Visit (http://proforma.mybluemix.net/) to see it in action.
 
 ## Instructions
 
-When you first load Proforma, you are asked to define the title, subtitle and fields of your form e.g.
-
-* title - WIN A RASPBERRY PI TODAY!!!
-* subtitle - Free to enter. No purchase necessary.
-* fields - First Name,Last Name,Company Name,Email,Telephone 
+When you first load Proforma, you are asked to define the fields of the form. This is acheived by dragging and dropping
+fields from the palette on the right onto a form template on the left:
 
 ![settings](https://github.com/glynnbird/proforma/raw/master/img/proforma_settings1.png "settings")
 
-Once submitted, the configuration page disappears revealing the form you have created:
+Each of the form elements can be clicked on to define the name, placeholder, label etc. Don't forget to configure the form name itself.
+
+Once saved, the configuration page disappears revealing the form you have created:
 
 ![form](https://github.com/glynnbird/proforma/raw/master/img/proforma_form.png "form")
 
