@@ -42,3 +42,7 @@ work so well on iPads. On the desktop device, sync to a Cloudant Database. Then 
 which will take the form configuration automatically. Syncing only happens when you want it to - when you press the sync button.
 
 
+## Credits
+
+The form builder is taken from https://github.com/minikomi/Bootstrap-Form-Builder
+
