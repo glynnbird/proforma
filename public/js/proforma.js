@@ -184,6 +184,9 @@ var submitClicked = function() {
   console.log("Submit clicked");
   var obj = formToJSON('#theform');
   obj.type="submission";
+  var d = new Date();
+  obj.date = d.toISOString();
+  obj.ts = d.getTime();
   db.post(obj, function(err, data) {
     $("#theform")[0].reset();
     alert("Thank you!");

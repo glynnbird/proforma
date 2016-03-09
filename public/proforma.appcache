@@ -13,7 +13,7 @@ CACHE:
 /img/form.jpg
 /assets/css/custom.css
 /assets/css/lib/bootstrap-responsive.min.css
-/js/proforma.js
+/js/proforma.js?2
 /assets/js/lib/require.js
 /js/pouchdb.js
 /assets/js/main-built.js
